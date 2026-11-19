@@ -41,6 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 save_admin($admin);
                 $_SESSION['admin_username'] = $admin['username'];
                 $_SESSION['admin_name'] = $admin['name'];
+
+                // Refresh Stateless Auth Cookie
+                $payload = json_encode([
+                    'username' => $admin['username'],
+                    'name'     => $admin['name'] ?? 'Administrator',
+                    'exp'      => time() + (86400 * 7)
+                ]);
+                $sig = hash_hmac('sha256', $payload, get_app_secret());
+                $authCookieVal = base64_encode($payload) . '.' . $sig;
+                $secure = is_https_request();
+                setcookie('portal_auth_sess', $authCookieVal, [
+                    'expires'  => time() + (86400 * 7),
+                    'path'     => '/',
+                    'secure'   => $secure,
+                    'httponly' => true,
+                    'samesite' => 'Lax'
+                ]);
+
                 set_flash_message('success', 'Akun admin berhasil diperbarui!');
                 header('Location: profile.php');
                 exit;
