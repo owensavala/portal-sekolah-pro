@@ -1,0 +1,98 @@
+[
+    {
+        "id": "sc_k1",
+        "category_id": "cat_web",
+        "title": "Website Resmi Sekolah",
+        "url": "#",
+        "description": "Portal resmi berita, pengumuman, dan profil sekolah",
+        "badge": "Website",
+        "fa_icon": "fa-solid fa-school",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 1
+    },
+    {
+        "id": "sc_k2",
+        "category_id": "cat_dapo",
+        "title": "DAPODIK Kemendikdasmen",
+        "url": "https://dapo.kemendikdasmen.go.id/",
+        "description": "Sistem Pendataan Pokok Pendidikan Nasional",
+        "badge": "Dapodik",
+        "fa_icon": "fa-solid fa-server",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 1
+    },
+    {
+        "id": "sc_k3",
+        "category_id": "cat_dapo",
+        "title": "Platform Merdeka Mengajar (PMM)",
+        "url": "https://guru.kemdikbud.go.id/",
+        "description": "Pengembangan kompetensi guru dan kurikulum merdeka",
+        "badge": "Guru",
+        "fa_icon": "fa-solid fa-chalkboard-user",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 2
+    },
+    {
+        "id": "sc_k4",
+        "category_id": "cat_dapo",
+        "title": "Rapor Pendidikan Indonesia",
+        "url": "https://raporpendidikan.kemdikbud.go.id/",
+        "description": "Indikator mutu dan profil capaian satuan pendidikan",
+        "badge": "Mutu",
+        "fa_icon": "fa-solid fa-chart-pie",
+        "is_pinned": false,
+        "is_active": true,
+        "order": 3
+    },
+    {
+        "id": "sc_k5",
+        "category_id": "cat_aka",
+        "title": "E-Rapor Kurikulum Merdeka",
+        "url": "#",
+        "description": "Aplikasi Pengisian dan Cetak Rapor Siswa",
+        "badge": "Rapor",
+        "fa_icon": "fa-solid fa-file-signature",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 1
+    },
+    {
+        "id": "sc_k6",
+        "category_id": "cat_aka",
+        "title": "Perpustakaan Digital (SIBI)",
+        "url": "https://buku.kemdikbud.go.id/",
+        "description": "Sistem Informasi Perbukuan Indonesia & Buku Digital",
+        "badge": "Literasi",
+        "fa_icon": "fa-solid fa-book-bookmark",
+        "is_pinned": false,
+        "is_active": true,
+        "order": 2
+    },
+    {
+        "id": "sc_k7",
+        "category_id": "cat_tes",
+        "title": "Portal ANBK Kemdikbud",
+        "url": "https://anbk.kemdikbud.go.id/",
+        "description": "Asesmen Nasional Berbasis Komputer",
+        "badge": "ANBK",
+        "fa_icon": "fa-solid fa-desktop",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 1
+    },
+    {
+        "id": "sc_k8",
+        "category_id": "cat_tes",
+        "title": "CBT Ujian Sekolah",
+        "url": "#",
+        "description": "Ujian Sumatif dan Asesmen Akhir Berbasis Komputer",
+        "badge": "Ujian",
+        "fa_icon": "fa-solid fa-laptop-code",
+        "is_pinned": true,
+        "is_active": true,
+        "order": 2
+    }
+]

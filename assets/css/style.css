@@ -1,0 +1,234 @@
+/* Modern Portal Styles - Universal School Portal Pro */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #0284c7;
+  --primary-rgb: 2, 132, 199;
+  --secondary: #06b6d4;
+  --secondary-rgb: 6, 182, 212;
+  --accent: #38bdf8;
+  --accent-rgb: 56, 189, 248;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+  transition: background 0.4s ease;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card-dynamic {
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.glass-card-dynamic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: 0.6s ease;
+  pointer-events: none;
+}
+
+.glass-card-dynamic:hover::before {
+  left: 100%;
+}
+
+/* Dynamic Spotlight Reflection following cursor position */
+.glass-card-dynamic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--secondary-rgb), 0.22), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.glass-card-dynamic:hover::after {
+  opacity: 1;
+}
+
+.glass-card-dynamic:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--secondary);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35), 0 0 30px rgba(var(--secondary-rgb), 0.4);
+}
+
+.card-icon-glow {
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card-dynamic:hover .card-icon-glow {
+  transform: scale(1.15) rotate(4deg);
+  filter: drop-shadow(0 0 15px var(--secondary));
+}
+
+.card-action-btn {
+  transition: all 0.3s ease;
+}
+
+.glass-card-dynamic:hover .card-action-btn {
+  background-color: var(--secondary) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 15px rgba(var(--secondary-rgb), 0.5) !important;
+}
+
+/* Hero Logo Box Interaction */
+.hero-logo-box {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.hero-logo-box:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 0 35px rgba(var(--secondary-rgb), 0.45);
+  border-color: var(--secondary);
+}
+
+/* Staggered Card Entrance Animation */
+.card-animate-in {
+  animation: cardCascadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardCascadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Simple Mode Filter Tabs */
+.filter-tab {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-tab.active {
+  background: var(--secondary) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 20px rgba(var(--secondary-rgb), 0.45) !important;
+  border-color: var(--secondary) !important;
+}
+
+.filter-tab.active i {
+  color: #0f172a !important;
+}
+
+/* Modal List Items Cascade */
+.modal-shortcut-card {
+  animation: modalItemIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalItemIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3D Floating Icon Animation */
+.float-icon {
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Floating Ambient Orbs */
+.ambient-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -5;
+  animation: orbFloat 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 40px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* Clean Shortcut Card (Simple Mode) */
+.shortcut-card-tile {
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.shortcut-card-tile:hover {
+  border-color: var(--secondary);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(var(--secondary-rgb), 0.3);
+}
+
+/* Modal animation */
+.modal-enter {
+  animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}

@@ -1,0 +1,42 @@
+[
+    {
+        "id": "cat_web",
+        "name": "PORTAL RESMI",
+        "subname": "Website Sekolah & Informasi",
+        "icon_type": "fa",
+        "fa_icon": "fa-globe",
+        "badge": "Utama",
+        "order": 1,
+        "is_active": true
+    },
+    {
+        "id": "cat_dapo",
+        "name": "LAYANAN KEMDIKBUD",
+        "subname": "Dapodik, PMM & Rapor Pendidikan",
+        "icon_type": "fa",
+        "fa_icon": "fa-landmark",
+        "badge": "Kemdikbud",
+        "order": 2,
+        "is_active": true
+    },
+    {
+        "id": "cat_aka",
+        "name": "AKADEMIK & GURU",
+        "subname": "E-Rapor & Pembelajaran Digital",
+        "icon_type": "fa",
+        "fa_icon": "fa-graduation-cap",
+        "badge": "Akademik",
+        "order": 3,
+        "is_active": true
+    },
+    {
+        "id": "cat_tes",
+        "name": "ASESMEN & CBT",
+        "subname": "ANBK & Ujian Sekolah",
+        "icon_type": "fa",
+        "fa_icon": "fa-laptop-code",
+        "badge": "Ujian",
+        "order": 4,
+        "is_active": true
+    }
+]

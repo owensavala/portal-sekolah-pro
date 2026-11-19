@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="islGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="50%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#032b17"/>
+    </linearGradient>
+    <pattern id="star8" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M60,0 L75,45 L120,60 L75,75 L60,120 L45,75 L0,60 L45,45 Z" fill="none" stroke="#f59e0b" stroke-width="1.2" opacity="0.18"/>
+      <circle cx="60" cy="60" r="25" fill="none" stroke="#10b981" stroke-width="1" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#islGrad)"/>
+  <rect width="100%" height="100%" fill="url(#star8)"/>
+  <circle cx="960" cy="540" r="450" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.12"/>
+</svg>

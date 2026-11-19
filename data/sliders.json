@@ -1,0 +1,11 @@
+[
+  {
+    "id": "sld_1",
+    "image": "uploads/Logo_Instansi.png",
+    "title": "Selamat Datang di Portal Terpadu",
+    "subtitle": "MIS Integral Hidayatullah Kota Ternate • Berakhlak Mulia & Cerdas Qur'ani",
+    "link": "https://misintegralhidayatullah.sch.id/",
+    "is_active": true,
+    "order": 1
+  }
+]
