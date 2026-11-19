@@ -16,7 +16,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Panel Pengelola') ?> • <?= e($config['school_name'] ?? 'Portal Madrasah') ?></title>
-    <link rel="shortcut icon" href="../<?= e($config['favicon'] ?? 'uploads/favicon.ico') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= e(asset_url($config['favicon'] ?? 'uploads/favicon.ico', true)) ?>" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <!-- School Brand / Logo -->
             <div class="p-5 border-b border-slate-800/80 flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center border border-white/20">
-                    <img src="../<?= e($config['logo'] ?? 'uploads/Logo_Instansi.png') ?>" alt="Logo" class="max-h-full max-w-full object-contain">
+                    <img src="<?= e(asset_url($config['logo'] ?? 'uploads/Logo_Instansi.png', true)) ?>" alt="Logo" class="max-h-full max-w-full object-contain">
                 </div>
                 <div class="overflow-hidden">
                     <h1 class="text-xs font-black tracking-wider text-white uppercase truncate">ADMIN PORTAL</h1>

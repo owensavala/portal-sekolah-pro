@@ -281,7 +281,7 @@ $config = get_config();
                 <!-- Logo -->
                 <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 flex items-start space-x-4">
                     <div class="w-20 h-20 rounded-2xl bg-slate-900 border border-slate-700 p-2 flex items-center justify-center shrink-0">
-                        <img src="../<?= e($config['logo'] ?? 'uploads/Logo_Instansi.png') ?>" alt="Logo Saat Ini" class="max-h-full max-w-full object-contain">
+                        <img src="<?= e(asset_url($config['logo'] ?? 'uploads/Logo_Instansi.png', true)) ?>" alt="Logo Saat Ini" class="max-h-full max-w-full object-contain">
                     </div>
                     <div class="flex-1">
                         <label class="block text-xs font-bold text-white mb-1">Upload Logo Sekolah Baru</label>
@@ -294,7 +294,7 @@ $config = get_config();
                 <!-- Favicon -->
                 <div class="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 flex items-start space-x-4">
                     <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 p-2 flex items-center justify-center shrink-0">
-                        <img src="../<?= e($config['favicon'] ?? 'uploads/favicon.ico') ?>" alt="Favicon" class="max-h-full max-w-full object-contain">
+                        <img src="<?= e(asset_url($config['favicon'] ?? 'uploads/favicon.ico', true)) ?>" alt="Favicon" class="max-h-full max-w-full object-contain">
                     </div>
                     <div class="flex-1">
                         <label class="block text-xs font-bold text-white mb-1">Ganti Favicon Tab</label>
@@ -425,7 +425,7 @@ $config = get_config();
                         <span class="text-slate-400">File Aktif:</span>
                         <span class="text-emerald-400 font-mono truncate"><?= e($config['bg_image']) ?></span>
                     </div>
-                    <a href="../<?= e($config['bg_image']) ?>" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-[11px] font-bold">
+                    <a href="<?= e(asset_url($config['bg_image'], true)) ?>" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-[11px] font-bold">
                         Lihat Gambar Asli
                     </a>
                 </div>

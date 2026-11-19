@@ -37,7 +37,7 @@ $csrf_token = generate_csrf_token();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Pengelola • <?= e($config['school_name'] ?? 'Portal Madrasah') ?></title>
-    <link rel="shortcut icon" href="../<?= e($config['favicon'] ?? 'uploads/favicon.ico') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= e(asset_url($config['favicon'] ?? 'uploads/favicon.ico', true)) ?>" type="image/x-icon">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +75,7 @@ $csrf_token = generate_csrf_token();
             <!-- Header -->
             <div class="text-center mb-6">
                 <div class="w-20 h-20 mx-auto rounded-2xl p-2 bg-white/15 border border-white/30 backdrop-blur flex items-center justify-center mb-3 shadow-lg">
-                    <img src="../<?= e($config['logo'] ?? 'uploads/Logo_Instansi.png') ?>" alt="Logo" class="max-h-full max-w-full object-contain">
+                    <img src="<?= e(asset_url($config['logo'] ?? 'uploads/Logo_Instansi.png', true)) ?>" alt="Logo" class="max-h-full max-w-full object-contain">
                 </div>
                 <h1 class="text-xl font-black text-white uppercase tracking-wider">PANEL ADMINISTRATOR</h1>
                 <p class="text-xs text-emerald-300 mt-1"><?= e($config['school_name'] ?? 'MIS Integral Hidayatullah') ?></p>

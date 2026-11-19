@@ -33,7 +33,7 @@ foreach ($categories as $cat) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($config['site_title'] ?? 'Portal Sekolah Terpadu') ?></title>
     <meta name="description" content="<?= e($config['tagline'] ?? '') ?> - <?= e($config['school_name'] ?? '') ?>">
-    <link rel="shortcut icon" href="<?= e($config['favicon'] ?? 'uploads/favicon.ico') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= e(asset_url($config['favicon'] ?? 'uploads/favicon.ico')) ?>" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,7 +119,7 @@ foreach ($categories as $cat) {
         <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <!-- Logo -->
             <div class="hero-logo-box w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-3xl p-2.5 bg-white/10 backdrop-blur-xl border border-white/25 shadow-2xl flex items-center justify-center mb-4 float-icon cursor-pointer">
-                <img src="<?= e($config['logo'] ?? 'uploads/Logo_Instansi.png') ?>" alt="Logo" class="max-h-full max-w-full object-contain filter drop-shadow">
+                <img src="<?= e(asset_url($config['logo'] ?? 'uploads/Logo_Instansi.png')) ?>" alt="Logo" class="max-h-full max-w-full object-contain filter drop-shadow">
             </div>
 
             <!-- School Name -->

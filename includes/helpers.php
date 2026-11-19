@@ -8,6 +8,19 @@ function e($string) {
 }
 
 /**
+ * Resolve asset URL safely across environments (supports Base64 data URIs, CDN URLs, and local files)
+ */
+function asset_url($path, $inAdmin = false) {
+    if (empty($path)) return '';
+    // Pass-through data URIs and full HTTP(S) URLs unmodified
+    if (str_starts_with($path, 'data:') || str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+        return $path;
+    }
+    $clean = ltrim($path, '/');
+    return ($inAdmin ? '../' : '') . $clean;
+}
+
+/**
  * Generate CSS for body background based on admin config
  */
 function generate_background_css($config, $prefix = '') {
@@ -26,7 +39,7 @@ function generate_background_css($config, $prefix = '') {
             $overlayColor = $config['bg_overlay_color'] ?? ($config['bg_color_start'] ?? '#0f172a');
             $rgb = hex_to_rgb($overlayColor);
             if (!empty($img)) {
-                if (str_starts_with($img, 'http://') || str_starts_with($img, 'https://') || str_starts_with($img, '/')) {
+                if (str_starts_with($img, 'http://') || str_starts_with($img, 'https://') || str_starts_with($img, 'data:') || str_starts_with($img, '/')) {
                     $imgPath = $img;
                 } else {
                     $imgPath = '/' . ltrim($img, '/');
@@ -219,18 +232,32 @@ function handle_file_upload($file_array, $allowed_ext = ['png', 'jpg', 'jpeg', '
     }
 
     $uploadDir = __DIR__ . '/../uploads/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
+    $isServerless = getenv('VERCEL') || isset($_ENV['VERCEL']) || !is_writable($uploadDir);
+
+    // If on normal server with writable uploads directory, save as regular file
+    if (!$isServerless) {
+        if (!is_dir($uploadDir)) {
+            @mkdir($uploadDir, 0755, true);
+        }
+        $safeName = uniqid('up_') . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
+        $targetPath = $uploadDir . $safeName;
+
+        if (@move_uploaded_file($tmpFile, $targetPath)) {
+            return ['success' => true, 'path' => 'uploads/' . $safeName];
+        }
     }
 
-    $safeName = uniqid('up_') . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-    $targetPath = $uploadDir . $safeName;
-
-    if (move_uploaded_file($tmpFile, $targetPath)) {
-        return ['success' => true, 'path' => 'uploads/' . $safeName];
-    } else {
-        return ['success' => false, 'error' => 'Gagal memindahkan file ke direktori uploads.'];
+    // Serverless / Read-Only Environment Fallback (e.g. Vercel Lambda /var/task):
+    // Convert uploaded image directly into an inline Base64 Data URI.
+    // This allows instant persistence inside config.json in temporary storage
+    // without throwing "Read-only file system" errors and without requiring external S3/Cloudinary buckets.
+    $fileData = @file_get_contents($tmpFile);
+    if ($fileData !== false) {
+        $base64Uri = 'data:' . $mimeType . ';base64,' . base64_encode($fileData);
+        return ['success' => true, 'path' => $base64Uri];
     }
+
+    return ['success' => false, 'error' => 'Gagal memproses file upload pada sistem hosting serverless.'];
 }
 
 /**

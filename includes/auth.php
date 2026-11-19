@@ -47,9 +47,17 @@ function verify_csrf_token($token) {
     return hash_equals($_SESSION['csrf_token'], $token);
 }
 
+function get_login_attempts_file() {
+    $dir = defined('DATA_PATH') ? DATA_PATH : (__DIR__ . '/../data');
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0777, true);
+    }
+    return $dir . '/.login_attempts.json';
+}
+
 function check_login_rate_limit() {
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
-    $attemptsFile = __DIR__ . '/../data/.login_attempts.json';
+    $attemptsFile = get_login_attempts_file();
     if (!file_exists($attemptsFile)) return ['allowed' => true];
 
     $data = json_decode(@file_get_contents($attemptsFile), true) ?: [];
@@ -80,7 +88,7 @@ function check_login_rate_limit() {
 
 function record_failed_login() {
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
-    $attemptsFile = __DIR__ . '/../data/.login_attempts.json';
+    $attemptsFile = get_login_attempts_file();
     $data = file_exists($attemptsFile) ? (json_decode(@file_get_contents($attemptsFile), true) ?: []) : [];
 
     $now = time();
@@ -96,7 +104,7 @@ function record_failed_login() {
 
 function clear_failed_logins() {
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
-    $attemptsFile = __DIR__ . '/../data/.login_attempts.json';
+    $attemptsFile = get_login_attempts_file();
     if (file_exists($attemptsFile)) {
         $data = json_decode(@file_get_contents($attemptsFile), true) ?: [];
         if (isset($data[$ip])) {
