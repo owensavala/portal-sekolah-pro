@@ -4,7 +4,29 @@
  * Safe, fast, zero-configuration persistence compatible with PHP 8.2+
  */
 
-defined('DATA_PATH') or define('DATA_PATH', __DIR__ . '/../data');
+// Set DATA_PATH with Vercel / serverless writable fallback
+if (!defined('DATA_PATH')) {
+    $baseDataDir = __DIR__ . '/../data';
+    if (getenv('VERCEL') || isset($_ENV['VERCEL']) || !is_writable($baseDataDir)) {
+        $tempDataDir = sys_get_temp_dir() . '/portal_data';
+        if (!is_dir($tempDataDir)) {
+            @mkdir($tempDataDir, 0777, true);
+        }
+        // Copy seed data files if they don't exist yet in temp
+        $seedFiles = @glob($baseDataDir . '/*.json');
+        if ($seedFiles) {
+            foreach ($seedFiles as $file) {
+                $targetFile = $tempDataDir . '/' . basename($file);
+                if (!file_exists($targetFile)) {
+                    @copy($file, $targetFile);
+                }
+            }
+        }
+        define('DATA_PATH', $tempDataDir);
+    } else {
+        define('DATA_PATH', $baseDataDir);
+    }
+}
 
 function json_read($filename, $default = []) {
     $filepath = DATA_PATH . '/' . $filename;
