@@ -47,8 +47,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <body class="min-h-screen flex flex-col md:flex-row bg-slate-950 text-slate-100">
 
     <!-- Left Sidebar -->
-    <aside class="w-full md:w-64 bg-slate-900/90 border-r border-slate-800 flex flex-col justify-between shrink-0">
-        <div>
+    <aside class="w-full md:w-64 bg-slate-900/90 border-r border-slate-800 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-40">
+        <div class="overflow-y-auto flex-1">
             <!-- School Brand / Logo -->
             <div class="p-5 border-b border-slate-800/80 flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center border border-white/20">
@@ -98,13 +98,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </nav>
         </div>
 
-        <!-- Sidebar Footer Action -->
-        <div class="p-3 border-t border-slate-800 space-y-2">
-            <a href="../index.php" target="_blank" class="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700">
+        <!-- Sidebar Footer Action (Always pinned at the bottom of the viewport) -->
+        <div class="p-3 border-t border-slate-800 space-y-2 shrink-0 bg-slate-900/95">
+            <a href="../index.php" target="_blank" class="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 shadow-sm">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-emerald-400"></i>
                 <span>Lihat Web Portal</span>
             </a>
-            <a href="logout.php" onclick="return confirm('Keluar dari panel pengelola?');" class="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-semibold transition border border-red-800/40">
+            <a href="logout.php" onclick="return confirm('Keluar dari panel pengelola?');" class="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-semibold transition border border-red-800/40 shadow-sm">
                 <i class="fa-solid fa-power-off text-xs"></i>
                 <span>Keluar (Logout)</span>
             </a>
@@ -112,13 +112,18 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </aside>
 
     <!-- Right Main Content Area -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+    <div class="flex-1 flex flex-col min-w-0">
         <!-- Top Header Bar -->
-        <header class="h-16 bg-slate-900/60 border-b border-slate-800/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 backdrop-blur">
+        <header class="h-16 bg-slate-900/70 border-b border-slate-800/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 backdrop-blur-md">
             <div class="flex items-center space-x-3">
                 <h2 class="text-base sm:text-lg font-bold text-white"><?= e($pageTitle ?? 'Dashboard') ?></h2>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <a href="../index.php" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-emerald-400"></i>
+                    <span>Web Publik</span>
+                </a>
+                <div class="h-5 w-px bg-slate-800 hidden md:block"></div>
                 <div class="text-right hidden sm:block">
                     <div class="text-xs font-bold text-slate-200"><?= e($_SESSION['admin_name'] ?? 'Administrator') ?></div>
                     <div class="text-[10px] text-emerald-400 font-medium">Superadmin</div>
@@ -126,6 +131,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-black text-sm">
                     <i class="fa-solid fa-user"></i>
                 </div>
+                <!-- Direct Quick Logout Button in Header Bar -->
+                <a href="logout.php" onclick="return confirm('Keluar dari panel pengelola?');" 
+                   title="Keluar dari Panel Admin"
+                   class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-950/60 hover:bg-red-900 text-red-300 hover:text-white text-xs font-bold border border-red-800/50 transition shadow-sm ml-1">
+                    <i class="fa-solid fa-power-off text-xs text-red-400"></i>
+                    <span class="hidden sm:inline">Logout</span>
+                </a>
             </div>
         </header>
 
